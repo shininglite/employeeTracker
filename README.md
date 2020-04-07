@@ -1,2 +1,1 @@
-# employeeTracker
-Managing a company's employees using node, inquirer, and MySQL.
+# employee-tracker
