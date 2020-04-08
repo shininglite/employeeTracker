@@ -1,16 +1,15 @@
 // Require inquirer
 const inquirer = require('inquirer');
 
-// Require the api and html routes
-// require('./routes/apiRoutes')(app);
-
+// "import" functionality of the connection.js file
 const connection = require('./DB/connection');
-
+//TODO: clear repetition of choices in terminal after each call to init()
+// use inquirer to prompt the user in the terminal
 function init() {
   inquirer
     .prompt([
       {
-        type: "list",
+        type: "rawlist",
         message: "What would you like to do?",
         name: "userChoice",
         choices: [
@@ -54,6 +53,7 @@ function init() {
           updateEmployeeRoles();
           break;
 
+        // this could default to init() instead
         default:
           console.log("default switch met")
           break;
@@ -132,7 +132,7 @@ function addEmployee() {
       name: "role_id"
     },
     {
-      type: "list",
+      type: "rawlist",
       message: "Does this employee have a manager?",
       name: "hasManager",
       choices: [
@@ -218,7 +218,7 @@ function updateEmployeeRoles() {
     inquirer
       .prompt([
         {
-          type: "list",
+          type: "rawlist",
           message: "Which employee would you like to demote?",
           name: "employeeName",
           choices: employeeNamesArray
@@ -247,7 +247,7 @@ function askToEndSession() {
   inquirer
     .prompt([
       {
-        type: "list",
+        type: "rawlist",
         message: "Would you like to continue this session?",
         name: "choice",
         choices: [
