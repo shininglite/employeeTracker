@@ -46,7 +46,7 @@ For your reference, the database table contains three tables:
   * **role_id** - INT to hold reference to role employee has
   * **manager_id** - INT to hold reference to another employee that manager of the current employee. This field may be null if the employee has no manager
   
-The application that at a allows the user to:
+The application allows you to:
 
   * Add departments, roles, employees
 
@@ -54,7 +54,7 @@ The application that at a allows the user to:
 
   * Update employee roles
 
-  Below is a gif of the application that animates its use:
+  Below is a gif of the application that animates its use. It will animate if you view this file with software that interprets markdown syntax, such as previewing the file in VSCode.
 
   ![Employee Tracker](Assets/employee-tracker.gif)
 
