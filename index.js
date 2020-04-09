@@ -3,13 +3,13 @@ const inquirer = require('inquirer');
 
 // "import" functionality of the connection.js file
 const connection = require('./DB/connection');
-//TODO: clear repetition of choices in terminal after each call to init()
+
 // use inquirer to prompt the user in the terminal
 function init() {
   inquirer
     .prompt([
       {
-        type: "rawlist",
+        type: "list",
         message: "What would you like to do?",
         name: "userChoice",
         choices: [
@@ -132,7 +132,7 @@ function addEmployee() {
       name: "role_id"
     },
     {
-      type: "rawlist",
+      type: "list",
       message: "Does this employee have a manager?",
       name: "hasManager",
       choices: [
@@ -218,8 +218,8 @@ function updateEmployeeRoles() {
     inquirer
       .prompt([
         {
-          type: "rawlist",
-          message: "Which employee would you like to demote?",
+          type: "list",
+          message: "Which employee would you like to promote/demote?",
           name: "employeeName",
           choices: employeeNamesArray
         },
@@ -233,7 +233,7 @@ function updateEmployeeRoles() {
         let employeeUniqueId = employeeNamesArray.indexOf(employeeName) + 1;
 
         connection.query('UPDATE employees SET ? WHERE employees.id = ?', [{role_id: newRoleId}, employeeUniqueId])
-        .then(console.log(employeeName + " has been demoted to the Role ID of " + newRoleId))
+        .then(console.log(employeeName + " has been promoted/demoted to the Role ID of " + newRoleId))
         .catch(error => console.log(error))
         askToEndSession();
 
@@ -247,7 +247,7 @@ function askToEndSession() {
   inquirer
     .prompt([
       {
-        type: "rawlist",
+        type: "list",
         message: "Would you like to continue this session?",
         name: "choice",
         choices: [
