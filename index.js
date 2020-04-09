@@ -23,7 +23,9 @@ function init() {
         ]
       }
     ])
+    // name is the key and userChoice is the value
     .then(function ({ userChoice }) {
+      //call a function based on user choice above
       switch (userChoice) {
         case "Add Department":
           addDepartment();
@@ -53,7 +55,6 @@ function init() {
           updateEmployeeRoles();
           break;
 
-        // this could default to init() instead
         default:
           console.log("default switch met")
           break;
@@ -63,7 +64,7 @@ function init() {
 
 }
 
-
+// function using inquirer method to add a new Department
 function addDepartment() {
   inquirer
     .prompt([
@@ -73,6 +74,11 @@ function addDepartment() {
         name: "department_name"
       }
     ])
+    // use MySQL query syntax to add new department
+    // connection is from require db/connection above
+    // connection.query is redefined as util.promisify(connection.query)
+    // in connection.js, and exported there, required above
+    // which gives access to promises .then and .catch
     .then(function ({ department_name }) {
       connection.query('INSERT INTO departments SET ?', {department_name: department_name})
       .then(console.log(department_name, "has been added to Departments!"))
@@ -236,9 +242,7 @@ function updateEmployeeRoles() {
         .then(console.log(employeeName + " has been promoted/demoted to the Role ID of " + newRoleId))
         .catch(error => console.log(error))
         askToEndSession();
-
-      })
-    
+      })  
   })
   .catch(error => console.log(error))
 }
